@@ -16,7 +16,7 @@ let validationSchema = yup.object().shape({
   name: yup
     .string()
     .required(requiredError)
-    .min(3, 'First name must have more than 3 characters'),
+    .min(3, 'Name must have more than 3 characters'),
   email: yup.string().required(requiredError).email('Email must be valid'),
   password: yup
     .string()
