@@ -1,0 +1,65 @@
+.Container {
+  background: #fff;
+  padding: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 2px;
+  width: 350px;
+}
+
+.Container p {
+  font-size: 14px;
+  color: rgb(88, 88, 88);
+  padding: 5px;
+}
+
+.Container h1 {
+  font-family: 'Orelega One', cursive;
+}
+
+.Form {
+  padding: 20px;
+}
+
+.Form div {
+  margin-bottom: 5px;
+}
+
+.Form div input {
+  padding: 12px;
+  width: 100%;
+  border: 1px solid rgb(161, 161, 161);
+  outline: none;
+  border-radius: 3px;
+  color: rgb(78, 73, 73);
+}
+
+.Form div input:focus {
+  background-color: rgb(205, 226, 245);
+}
+
+.Form div small {
+  display: block;
+  text-align: left;
+  color: red;
+  font-size: 12px;
+}
+
+.Form button {
+  margin: 5px 0;
+  padding: 12px;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #054a91;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+}
+
+.Link {
+  text-decoration: none;
+  color: #054a91;
+  display: block;
+}
