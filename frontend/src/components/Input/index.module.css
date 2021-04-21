@@ -1,0 +1,23 @@
+.Container {
+  margin-bottom: 5px;
+}
+
+.Input {
+  padding: 12px;
+  width: 100%;
+  border: 1px solid rgb(161, 161, 161);
+  outline: none;
+  border-radius: 3px;
+  color: rgb(78, 73, 73);
+}
+
+.Input:focus {
+  background-color: rgb(205, 226, 245);
+}
+
+.ErrorMessage {
+  display: block;
+  text-align: left;
+  color: red;
+  font-size: 12px;
+}

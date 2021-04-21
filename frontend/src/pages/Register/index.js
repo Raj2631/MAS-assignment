@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 
 import useAuth from '../../components/useAuth';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 import classes from './index.module.css';
-import Button from '../../components/Button';
 
 const requiredError = 'This field is required';
 let validationSchema = yup.object().shape({
@@ -76,48 +76,32 @@ function Register() {
       <p className={classes.Para}>Remember, everything is important</p>
       {error && <p className={classes.ErrorText}>{error}</p>}
       <form className={classes.Form} onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input name="name" placeholder="Name" {...register('name')} />
-          <ErrorMessage
-            render={({ message }) => <small>{message}</small>}
-            errors={errors}
-            name="name"
-          />
-        </div>
-        <div>
-          <input name="email" placeholder="Email" {...register('email')} />
-          <ErrorMessage
-            render={({ message }) => <small>{message}</small>}
-            errors={errors}
-            name="email"
-          />
-        </div>
-        <div>
-          <input
-            name="password"
-            placeholder="Password"
-            type="password"
-            {...register('password')}
-          />
-          <ErrorMessage
-            render={({ message }) => <small>{message}</small>}
-            errors={errors}
-            name="password"
-          />
-        </div>
-        <div>
-          <input
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm Password"
-            {...register('confirmPassword')}
-          />
-          <ErrorMessage
-            render={({ message }) => <small>{message}</small>}
-            errors={errors}
-            name="confirmPassword"
-          />
-        </div>
+        <Input
+          name="name"
+          placeholder="Name"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          name="email"
+          placeholder="Email"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Password"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+          register={register}
+          errors={errors}
+        />
         <Button>Register</Button>
       </form>
       <p className={classes.Para}>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
@@ -10,6 +9,7 @@ import useAuth from '../../components/useAuth';
 
 import classes from './index.module.css';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 
 const requiredError = 'This field is required';
 let validationSchema = yup.object().shape({
@@ -58,27 +58,19 @@ function Login() {
       <p className={classes.Para}>Remember, everything is important</p>
       {error && <p className={classes.ErrorText}>{error}</p>}
       <form className={classes.Form} onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input name="email" placeholder="Email" {...register('email')} />
-          <ErrorMessage
-            render={({ message }) => <small>{message}</small>}
-            errors={errors}
-            name="email"
-          />
-        </div>
-        <div>
-          <input
-            name="password"
-            placeholder="Password"
-            type="password"
-            {...register('password')}
-          />
-          <ErrorMessage
-            render={({ message }) => <small>{message}</small>}
-            errors={errors}
-            name="password"
-          />
-        </div>
+        <Input
+          name="email"
+          placeholder="Email"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Password"
+          register={register}
+          errors={errors}
+        />
         <Button>Login</Button>
       </form>
       <p className={classes.Para}>

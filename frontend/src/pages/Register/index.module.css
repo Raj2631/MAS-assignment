@@ -20,30 +20,6 @@
   padding: 20px;
 }
 
-.Form div {
-  margin-bottom: 5px;
-}
-
-.Form div input {
-  padding: 12px;
-  width: 100%;
-  border: 1px solid rgb(161, 161, 161);
-  outline: none;
-  border-radius: 3px;
-  color: rgb(78, 73, 73);
-}
-
-.Form div input:focus {
-  background-color: rgb(205, 226, 245);
-}
-
-.Form div small {
-  display: block;
-  text-align: left;
-  color: red;
-  font-size: 12px;
-}
-
 .Link {
   text-decoration: none;
   color: #054a91;
