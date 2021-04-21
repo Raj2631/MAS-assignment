@@ -18,7 +18,9 @@
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "dev": "concurrently \"nodemon backend/server.js\" \"cd frontend && npm start\""
+    "server": "nodemon backend/server.js",
+    "client": "cd frontend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "type": "module",
   "author": "Rakshit Pathak",

@@ -1,10 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
+
+import useAuth from '../../components/useAuth';
+
 import classes from './index.module.css';
+import Button from '../../components/Button';
 
 const requiredError = 'This field is required';
 let validationSchema = yup.object().shape({
@@ -29,6 +34,9 @@ let validationSchema = yup.object().shape({
 });
 
 function Register() {
+  const [error, setError] = useState('');
+  const context = useAuth();
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -37,15 +45,39 @@ function Register() {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async ({ name, email, password }) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const { data } = await axios.post(
+        '/api/users',
+        { name, email, password },
+        config
+      );
+      context.authenticateUser(data);
+      history.push('/');
+    } catch (error) {
+      setError(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
+    }
+  };
+
   return (
     <div className={classes.Container}>
+      {context.authenticated && <Redirect to="/" />}
       <h1>Evernote</h1>
-      <p>Remember, everything is important</p>
+      <p className={classes.Para}>Remember, everything is important</p>
+      {error && <p className={classes.ErrorText}>{error}</p>}
       <form className={classes.Form} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <input name="name" placeholder="Name" {...register('name')} />
-
           <ErrorMessage
             render={({ message }) => <small>{message}</small>}
             errors={errors}
@@ -86,9 +118,9 @@ function Register() {
             name="confirmPassword"
           />
         </div>
-        <button>Register</button>
+        <Button>Register</Button>
       </form>
-      <p>
+      <p className={classes.Para}>
         Already have an account?
         <Link className={classes.Link} to="/login">
           Login

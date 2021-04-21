@@ -10,9 +10,8 @@ if (userToken) {
 }
 const AuthContextProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(state);
-
-  const authenticateUser = (userToken) => {
-    localStorage.setItem('UserToken', JSON.stringify(userToken));
+  const authenticateUser = (user) => {
+    localStorage.setItem('UserToken', JSON.stringify(user.token));
     setAuthenticated(true);
   };
 
