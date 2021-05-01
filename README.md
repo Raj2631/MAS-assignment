@@ -1,6 +1,4 @@
-# MAS Assignment
-
-Project assignment for internship application at My Analytics School
+An authentication system with frontend and backend validations.
 
 ## How to run?
 
